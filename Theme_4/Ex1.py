@@ -4,6 +4,7 @@ import calendar
 '''
 Программа вычисляет новую дату. На входе получаем 2 агрумента: дата пользователя и число, являющееся количеством
 месяцев, которое нужно добавить или отнять от латы пользователя.
+A programme can plus or minus user months in user date.
 '''
 
 def change_data(user_date, user_number):
