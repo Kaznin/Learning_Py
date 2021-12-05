@@ -1,25 +1,40 @@
 import datetime
-count = 0
+import calendar
+
+'''
+Программа вычисляет новую дату. На входе получаем 2 агрумента: дата пользователя и число, являющееся количеством
+месяцев, которое нужно добавить или отнять от латы пользователя.
+'''
 
 def change_data(user_date, user_number):
 
-    months_dict = {'01': 31, '02': 28, '03': 31, '04': 30, '05': 31, '06': 30, '07': 31,
-              '08': 31, '09': 30, '10': 31, '11': 30, '12': 31}
 
-    months_list = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-    actuality_month = []
-    work_month = []
-
-    for i in months_list:
-        if months_list[i] == user_date[3:5]:
-            actuality_month.append(months_list[i])
-
-    for n in user_number:
-        count = months_list[actuality_month]
-
+    count_user_month = 0
     user_date = datetime.datetime.strptime(user_date, '%d.%m.%y')
-    new_date = user_date + datetime.timedelta(days=user_number*30.5)
+    user_year = user_date.year
+    user_month = user_date.month
 
-    return new_date
+    while count_user_month != abs(user_number):
+        if user_number > 0:
+            user_month += 1
+            if user_month == 13:
+                user_month = 1
+                user_year += 1
+            get_sum_days_in_month = calendar.monthrange(user_year, user_month) # calendar.monthrange(year, month)) возвращает двойной кортеж c первым рабочем днем месяца и количество дней в месяце для указанного года year и месяца month
+            count_user_month += 1 # тут работает счетчик. После совпадаение значения со значением переменной user_month программа остановится
+            user_date = user_date + datetime.timedelta(days=get_sum_days_in_month[1])
 
-print(change_data('02.02.89', 1))
+
+        elif user_number < 0:
+            user_month -= 1
+            if user_month == 0:
+                user_month = 12
+                user_year -= 1
+            get_sum_days_in_month = calendar.monthrange(user_year, user_month)
+            count_user_month += 1
+            user_date = user_date - datetime.timedelta(days=get_sum_days_in_month[1])
+
+
+    return user_date
+
+print(change_data('02.06.89', -10))
