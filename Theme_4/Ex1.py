@@ -23,7 +23,7 @@ def change_data(user_date, user_number):
                 user_year += 1
             get_sum_days_in_month = calendar.monthrange(user_year, user_month) # calendar.monthrange(year, month)) возвращает двойной кортеж c первым рабочем днем месяца и количество дней в месяце для указанного года year и месяца month
             count_user_month += 1 # тут работает счетчик. После совпадаение значения со значением переменной user_month программа остановится
-            user_date = (user_date + datetime.timedelta(days=get_sum_days_in_month[1])).strftime('%d.%m.%y')
+            user_date = user_date + datetime.timedelta(days=get_sum_days_in_month[1])
 
 
         elif user_number < 0:
@@ -33,9 +33,9 @@ def change_data(user_date, user_number):
                 user_year -= 1
             get_sum_days_in_month = calendar.monthrange(user_year, user_month)
             count_user_month += 1
-            user_date = (user_date - datetime.timedelta(days=get_sum_days_in_month[1])).strftime('%d.%m.%y')
+            user_date = user_date - datetime.timedelta(days=get_sum_days_in_month[1])
 
 
-    return user_date
+    return user_date.strftime('%d.%m.%y')
 
-print(change_data('01.11.10', -1))
+print(change_data('01.01.01', -120))
