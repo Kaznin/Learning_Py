@@ -27,7 +27,7 @@ def change_data(user_date, user_number):
 
 
         elif user_number < 0:
-            user_month -= 1
+            #user_month -= 1
             if user_month == 0:
                 user_month = 12
                 user_year -= 1
@@ -36,6 +36,6 @@ def change_data(user_date, user_number):
             user_date = user_date - datetime.timedelta(days=get_sum_days_in_month[1])
 
 
-    return user_date.strftime('%d.%m.%y')
+    return user_date.strftime('%d.%m.%Y')
 
-print(change_data('01.01.01', -120))
+print(change_data('30.03.01', -12))
