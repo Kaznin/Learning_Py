@@ -1,12 +1,11 @@
-objects = [1, 2, 1, 2, 3]
-new_list = []
+n, k = map(int, input().split())
 
-ans = 0
+def C(n, k):
+    if k == 0:
+        return 1
+    if k > n:
+        return 0
+    else:
+        return C(n-1, k) + C(n-1, k-1)
 
-for obj in objects: # доступная переменная objects
-    if obj not in new_list:
-        new_list.append(obj)
-    for obj
-
-print(new_list, objects)
-
+print(C(n, k))
